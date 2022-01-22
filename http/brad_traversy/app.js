@@ -74,6 +74,12 @@ app.delete('/post/:id', (req, res) => {
     res.send(`Post ${req.params.id} has been deleted`)
 })
 
+//  redirect status check 
+
+app.get('/redirect', (req, res) => {
+    res.redirect('/')
+})
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000')
 })
