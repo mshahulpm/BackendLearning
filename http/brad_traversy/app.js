@@ -41,7 +41,7 @@ app.post('/login', (req, res) => {
 })
 
 app.get('/protected', (req, res) => {
-    const token = req.header('cookie').split('=')[1]
+    const token = req.header('cookie')?.split('=')[1]
 
     console.log(req.headers)
     if (!token) return res.status(401).send('access denied')
