@@ -8,6 +8,12 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static(__dirname + '/public'))
 
+//  allow cross origin requests (optional)
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    next()
+})
 app.get('/test', (req, res) => {
 
     res.send({ name: 'hello' })
@@ -80,6 +86,18 @@ app.get('/redirect', (req, res) => {
     res.redirect('/')
 })
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000')
+//  send file 
+app.get('/invoice', (req, res) => {
+    // res.setHeader('Content-Type', 'application/octet-stream')
+    res.sendFile(path.join(__dirname, 'invoice.pdf'))
+})
+
+app.get('/invoice2', (req, res) => {
+    res.setHeader('Content-Type', 'application/octet-stream')
+    res.sendFile(path.join(__dirname, 'invoice.pdf'))
+})
+
+
+app.listen(3001, () => {
+    console.log('Server is running on port 3001')
 })
