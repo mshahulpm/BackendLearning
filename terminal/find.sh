@@ -1,5 +1,5 @@
 find . 
-# find every files snd dirs and subdirs inside mensioned dir (here current dir)
+# find every files and dirs and subdirs inside mentioned dir (here current dir)
 find hello -type d 
 # find only dirs and subdirs inside hello dir 
 find hello -type f
@@ -20,7 +20,7 @@ find . -type f -mmin +10 -mmin -20
 # find all file modified before 10 min ago and after last 20 minutes 
 find . -type f -mtime -10 
 # find all file modified in last 10 days 
-find . -type f -mtime -10 
+find . -type f -mtime +10 
 # find all file modified in minimum 10 days ago 
 find /home -size +5M 
 # find all files that is more than 5 mb in the home dir 
