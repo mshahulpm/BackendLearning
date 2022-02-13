@@ -23,7 +23,7 @@ function notFound(req, res) {
 }
 
 function responseEcho(req, res) {
-    const { input = '' } = req.params
+    const { input = '' } = req.query
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({
         normal: input,
@@ -45,15 +45,15 @@ function responseStatic(req, res) {
 http.createServer(function (req, res) {
     console.log(req.url);
     const url = new URL(req.url, 'http://localhost:8080');
-    let params = {}
+    let query = {}
     if (url.search) {
         const searchParams = new URLSearchParams(url.search);
         searchParams.forEach(function (value, key) {
-            params[key] = value;
+            query[key] = value;
         })
     }
 
-    req.params = params;
+    req.query = query;
 
     switch (url.pathname) {
         case '/':
