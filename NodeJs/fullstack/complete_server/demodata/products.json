@@ -1,0 +1,44 @@
+[
+    {
+        "id": "1",
+        "name": "Картофель",
+        "price": "100",
+        "weight": "100",
+        "image": "https://www.gastronom.ru/upload/iblock/b1b/b1b9f8f8f8f8f8f8f8f8f8f8f8f8f8f8.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Картофель",
+        "price": "100",
+        "weight": "100",
+        "image": "https://www.gastronom.ru/upload/iblock/b1b/b1b9f8f8f8f8f8f8f8f8f8f8f8f8f8f8.jpg"
+    },
+    {
+        "id": "3",
+        "name": "Картофель",
+        "price": "100",
+        "weight": "100",
+        "image": "https://www.gastronom.ru/upload/iblock/b1b/b1b9f8f8f8f8f8f8f8f8f8f8f8f8f8f8.jpg"
+    },
+    {
+        "id": "4",
+        "name": "Картофель",
+        "price": "100",
+        "weight": "100",
+        "image": "https://www.gastronom.ru/upload/iblock/b1b/b1b9f8f8f8f8f8f8f8f8f8f8f8f8f8f8.jpg"
+    },
+    {
+        "id": "5",
+        "name": "Картофель",
+        "price": "100",
+        "weight": "100",
+        "image": "https://www.gastronom.ru/upload/iblock/b1b/b1b9f8f8f8f8f8f8f8f8f8f8f8f8f8f8.jpg"
+    },
+    {
+        "id": "6",
+        "name": "Картофель",
+        "price": "100",
+        "weight": "100",
+        "image": "https://www.gastronom.ru/upload/iblock/b1b/b1b9f8f8f8f8f8f8f8f8f8f8f8f8f8f8.jpg"
+    }
+]
