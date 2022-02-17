@@ -1,0 +1,10 @@
+{
+  "version": "1.0",
+  "dependencies": {
+    "chalk": "2.4.1",
+    "cli-table": "^0.3.11",
+    "netrc": "^0.1.4",
+    "prompts": "^2.4.2",
+    "yargs": "^17.3.1"
+  }
+}
