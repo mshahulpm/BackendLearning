@@ -3,8 +3,28 @@ const app = express();
 const router = express.Router()
 const router2 = express.Router()
 const fs = require('fs');
+const pug = require('pug');
+const path = require('path');
+const methodOverride = require('method-override');
 
+app.set('view engine', 'pug');
 
+// app.use(methodOverride('X-HTTP-Method-Override'));
+//override the response 
+app.response.sendStatus = function (statusCode, type, message) {
+    this.contentType(type).status(statusCode).send(message);
+}
+
+// pug 
+app.get('/pug', (req, res) => {
+    res.render(path.join(__dirname, 'index'), { title: 'Hello ', message: 'this one is pug template' })
+})
+
+// checking 
+app.get('/sendStatus', (req, res) => {
+    console.log(req.baseUrl, req.originalUrl, req.secure, req.ip, req.header('Client-IP'));
+    res.sendStatus(200, 'application/json', JSON.stringify({ message: 'Hello World' }));
+});
 function getHandler(method) {
     return function (req, res) {
         res.send('Hello World! from ' + method);
@@ -26,8 +46,17 @@ router2.route('/')
         res.send('Hello World! from ' + req.method);
     })
 
+// cors 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+})
+
 app.use('/', router);
 app.use('/all', router2)
+app.get('/download', (req, res) => {
+    res.download('./package.json');
+})
 
 app.get('/error', (req, res) => {
     throw new Error('Error');
@@ -67,7 +96,7 @@ app.use(function (req, res, next) {
     res.status(404).json({ error: 'Sorry cant find that!' });
 })
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(3001, () => {
+    console.log('Server is running on port 3001');
 })
 
