@@ -1,2 +1,5 @@
-public.pem
-private.key
+*.pem
+*.key
+*.csr
+*.crt
+*.srl
