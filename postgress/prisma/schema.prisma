@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+model Card {
+  id                   String              @id
+  unhcr_no             String
+  individual_cardNo    String?
+  tribal_name          String
+  full_name            String
+  father_name          String
+  mother_name          String
+  dob                  DateTime
+  gender               Gender
+  origin_country       String
+  issued_date          DateTime
+  expiry_date          DateTime
+  individual_photo     String
+  barcode_fileNo       String?
+  barcode_individualNo String?
+  card_status          CardStatus          @default(waiting_for_printing)
+  notes                String?
+  is_card_expired      Boolean             @default(false)
+  is_card_blocked      Boolean             @default(false)
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime
+  card_request_id      String?             @unique
+  resident_form_no     String
+  card_request_type    CardRequestType
+  blocked_date         DateTime?
+  bar_code             String
+  CardRequest          CardRequest?        @relation(fields: [card_request_id], references: [id], onDelete: Cascade)
+  CardMetaData         CardMetaData?
+  CardStatusHistory    CardStatusHistory[]
+}
+
+model CardMetaData {
+  id                   String    @id
+  issued_count         Int
+  card_id              String    @unique
+  delivered_agent_id   String?
+  delivered_agent_name String?
+  delivered_date       DateTime?
+  notes                String?
+  delivery_location    String?
+  Card                 Card      @relation(fields: [card_id], references: [id], onDelete: Cascade)
+}
+
+model CardRequest {
+  id                   String            @id
+  remarks              String?
+  requested_admin_id   String
+  requested_admin_name String
+  processed_admin_id   String?
+  processed_admin_name String?
+  archived             Boolean?
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime
+  status               CardRequestStatus @default(pending)
+  resident_name        String
+  resident_form_no     String
+  request_type         CardRequestType   @default(new)
+  Card                 Card?
+}
+
+model UserSession {
+  id         String   @id
+  email      String?
+  is_blocked Boolean?
+  is_deleted Boolean?
+  name       String?
+  roles      String[] @default([])
+  user_id    String   @unique
+}
+
+model settings {
+  id    String        @id
+  value Json
+  name  settings_name @unique
+}
+
+model CardStatusHistory {
+  id          String     @id
+  card_id     String
+  card_status CardStatus
+  createdAt   DateTime   @default(now())
+  Card        Card       @relation(fields: [card_id], references: [id])
+}
+
+enum CardRequestStatus {
+  pending
+  approved
+  onHold
+  rejected
+}
+
+enum CardRequestType {
+  new
+  renewal
+  replace
+}
+
+enum CardStatus {
+  waiting_for_printing
+  printing_failed
+  printed
+  dispatched
+  returned
+  delivered
+  reIssued
+}
+
+enum Gender {
+  male
+  female
+  other
+}
+
+enum settings_name {
+  card_settings
+}
