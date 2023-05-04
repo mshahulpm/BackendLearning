@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@lucia-auth/adapter-mongoose": "^2.0.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "lucia-auth": "^1.5.0",
+    "mongoose": "^7.1.0"
+  }
+}
