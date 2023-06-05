@@ -82,6 +82,99 @@ var maximumWealth = function (accounts) {
 };
 
 
-console.log(
-    maximumWealth([[1, 5], [7, 3], [3, 5]])
-);
+// console.log(
+//     maximumWealth([[1, 5], [7, 3], [3, 5]])
+// );
+
+
+// 2574. Left and Right Sum Differences
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var leftRightDifference = function (nums) {
+
+    let l = nums.length
+    let res = new Array(l)
+    let leftSum = 0
+    for (let i = 0; i < l; i++) {
+        const element = nums[i];
+        res[i] = leftSum
+        leftSum += element
+    }
+
+    let rightSum = 0
+    for (let i = l - 1; i >= 0; i--) {
+        const element = nums[i];
+        res[i] = Math.abs(res[i] - rightSum)
+        rightSum += element
+    }
+
+    return res
+};
+
+
+// console.log(
+//     leftRightDifference([1])
+// );
+
+
+// 2114. Maximum Number of Words Found in Sentences
+/**
+ * @param {string[]} sentences
+ * @return {number}
+ */
+var mostWordsFound = function (sentences) {
+
+    let max = 0
+    for (let i = 0; i < sentences.length; i++) {
+        max = Math.max(max, countSpaces(sentences[i]))
+    }
+
+    return max + 1
+};
+
+function countSpaces(str) {
+    let count = 0
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === ' ') count++
+    }
+    return count
+}
+
+let arr = ["please wait", "continue to fight", "continue to win"]
+
+// console.log(
+//     mostWordsFound(arr)
+// );
+
+
+// 1365. How Many Numbers Are Smaller Than the Current Number
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var smallerNumbersThanCurrent = function (nums) {
+
+    let no_count = new Array(101).fill(0)
+    for (let i = 0; i < nums.length; i++) {
+        no_count[nums[i]]++
+    }
+
+    let prevSmallNoCount = 0
+    let currentNoCount = 0
+    for (let i = 0; i < no_count.length; i++) {
+        currentNoCount = no_count[i]
+        no_count[i] = prevSmallNoCount
+        prevSmallNoCount += currentNoCount
+    }
+
+    return nums.map(n => no_count[n])
+
+};
+
+arr = [6, 5, 4, 8]
+
+// console.log(
+//     // smallerNumbersThanCurrent(arr)
+// );
