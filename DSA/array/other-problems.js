@@ -178,3 +178,59 @@ arr = [6, 5, 4, 8]
 // console.log(
 //     // smallerNumbersThanCurrent(arr)
 // );
+
+
+// 1389. Create Target Array in the Given Order
+
+/**
+ * @param {number[]} nums
+ * @param {number[]} index
+ * @return {number[]}
+ */
+var createTargetArray = function (nums, index) {
+
+    let res = []
+    for (let i = 0; i < nums.length; i++) {
+        res.splice(index[i], 0, nums[i])
+    }
+    return res
+
+};
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var decompressRLElist = function (nums) {
+
+    let res = []
+    let freq, value;
+    for (let i = 0; i < nums.length; i += 2) {
+        freq = nums[i]
+        value = nums[i + 1]
+        for (let j = 0; j < freq; j++) {
+            res.push(value)
+        }
+    }
+    return res
+
+};
+
+
+// 1528. Shuffle String
+
+/**
+ * @param {string} s
+ * @param {number[]} indices
+ * @return {string}
+ */
+var restoreString = function (s, indices) {
+    let map = {}
+    indices.forEach((ind, i) => {
+        map[ind] = s[ind]
+        s[ind] = map[i] || s[i]
+    })
+    return s
+};
+
