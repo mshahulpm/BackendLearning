@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    String @id @default(dbgenerated("newid()")) @db.UniqueIdentifier
+  name  String
+  email String
+  Post  Post[]
+}
+
+model Author {
+  id          String @id @default(dbgenerated("newid()")) @db.UniqueIdentifier
+  title       String
+  description String
+  content     String
+  Post        Post[]
+}
+
+model Post {
+  id          String  @id @default(dbgenerated("newid()")) @db.UniqueIdentifier
+  title       String
+  description String
+  content     String
+  userId      String  @map("createdBy") @db.UniqueIdentifier
+  authorId    String  @map("createdBy") @db.UniqueIdentifier
+  User        User?   @relation(fields: [userId], references: [id])
+  Author      Author? @relation(fields: [authorId], references: [id])
+}
