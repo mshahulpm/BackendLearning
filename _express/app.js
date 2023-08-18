@@ -8,6 +8,8 @@ const path = require('path');
 const methodOverride = require('method-override');
 
 app.set('view engine', 'pug');
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 // app.use(methodOverride('X-HTTP-Method-Override'));
 //override the response 
@@ -69,6 +71,13 @@ function errorhandler(err, req, res, next) {
     res.send(err.message);
 }
 
+app.post('/json', (req, res) => {
+    console.log(req.body);
+    res.status(200).json({
+        token: "ahgsahsghagsghsgh"
+    })
+})
+
 const users = ['one ', 'two', 'three'];
 app.get('/format', function (req, res) {
     res.format({
@@ -93,6 +102,7 @@ app.get('/format', function (req, res) {
 
 // 404 
 app.use(function (req, res, next) {
+    console.log(req.url);
     res.status(404).json({ error: 'Sorry cant find that!' });
 })
 
