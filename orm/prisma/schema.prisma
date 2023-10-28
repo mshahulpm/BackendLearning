@@ -7,14 +7,15 @@ generator client {
 
 datasource db {
   provider = "sqlserver"
-  url      = env("DATABASE_URL")
+  url      = env("PRISMA_DB")
 }
 
 model User {
-  id    String @id @default(dbgenerated("newid()")) @db.UniqueIdentifier
-  name  String
-  email String
-  Post  Post[]
+  id       String @id @default(dbgenerated("newid()")) @db.UniqueIdentifier
+  name     String
+  email    String
+  username String @unique
+  Post     Post[]
 }
 
 model Author {
@@ -31,7 +32,7 @@ model Post {
   description String
   content     String
   userId      String  @map("createdBy") @db.UniqueIdentifier
-  authorId    String  @map("createdBy") @db.UniqueIdentifier
+  authorId    String  @map("AuthorBy") @db.UniqueIdentifier
   User        User?   @relation(fields: [userId], references: [id])
   Author      Author? @relation(fields: [authorId], references: [id])
 }
