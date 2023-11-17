@@ -10,29 +10,26 @@ datasource db {
   url      = env("PRISMA_DB")
 }
 
-model User {
-  id       String @id @default(dbgenerated("newid()")) @db.UniqueIdentifier
-  name     String
-  email    String
-  username String @unique
-  Post     Post[]
+model KPI {
+  id          Int        @id @default(autoincrement())
+  time_limit  Int
+  time_type   String
+  status_code String
+  Reminders   Reminder[]
 }
 
-model Author {
-  id          String @id @default(dbgenerated("newid()")) @db.UniqueIdentifier
-  title       String
-  description String
-  content     String
-  Post        Post[]
+model Reminder {
+  id             Int              @id @default(autoincrement())
+  reminder_no    Int
+  time_limit     Int
+  kpi_id         Int
+  KPI            KPI              @relation(fields: [kpi_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  ReminderMailto ReminderMailto[]
 }
 
-model Post {
-  id          String  @id @default(dbgenerated("newid()")) @db.UniqueIdentifier
-  title       String
-  description String
-  content     String
-  userId      String  @map("createdBy") @db.UniqueIdentifier
-  authorId    String  @map("AuthorBy") @db.UniqueIdentifier
-  User        User?   @relation(fields: [userId], references: [id])
-  Author      Author? @relation(fields: [authorId], references: [id])
+model ReminderMailto {
+  id          Int      @id @default(autoincrement())
+  mail_to     String
+  reminder_id Int
+  Reminder    Reminder @relation(fields: [reminder_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
 }
