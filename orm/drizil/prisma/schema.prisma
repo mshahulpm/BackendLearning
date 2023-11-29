@@ -20,9 +20,16 @@ model Country {
 }
 
 model City {
-    id         Int        @id @default(autoincrement())
+    id         Int          @id @default(autoincrement())
     name       String
     countryId  Int
-    popularity popularity @default(known)
-    Country    Country    @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    popularity popularity   @default(known)
+    Country    Country      @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+    Population Population[]
+}
+
+model Population {
+    id       Int  @id @default(autoincrement())
+    cilityId Int
+    City     City @relation(references: [id], fields: [cilityId], onDelete: Cascade, onUpdate: NoAction)
 }

@@ -21,7 +21,8 @@ async function dbConnect() {
 
     await client.connect();
 
-    await migrate(db, { migrationsFolder: './drizzle/migrations' });
+    const migrationResult = await migrate(db, { migrationsFolder: './drizzle/migrations' });
+    console.log(migrationResult);
 
 }
 
@@ -49,16 +50,22 @@ app.get('/new-random-country', async (req, res) => {
 
 app.get('/all-countries', async (req, res) => {
 
-    const _drizzle = await db.select().from(schema.countries).limit(2).leftJoin(
-        schema.cities, eq(schema.countries.id, schema.cities.countryId)
-    )
+    const _drizzle = await db.select().from(schema.countries)
+        .leftJoin(schema.cities, eq(schema.countries.id, schema.cities.countryId))
+        .leftJoin(schema.population, eq(schema.cities.id, schema.population.cityId))
 
     const _prisma = await prisma.country.findMany({
-        include: { City: true },
+        include: {
+            City: {
+                include: {
+                    Population: true
+                }
+            }
+        },
         take: 2
     })
 
-    const _pg = (await client.query(`select * from countries limit 2`)).rows
+    const _pg = (await client.query(`select * from countries left join cities on countries.id = cities.country_id`)).rows
 
     res.json({ _drizzle, _pg, _prisma })
 })
@@ -85,6 +92,16 @@ app.get('/all-cities', async (req, res) => {
     const cities = await db.query.cities.findMany()
 
     res.json(cities)
+})
+
+app.get('/add-population/:id', async (req, res) => {
+    const id = +req.params.id
+    const population = await prisma.population.create({
+        data: {
+            cilityId: id
+        }
+    })
+    res.json(population)
 })
 
 app.listen(3005, () => console.log('server is running on port 3005'))

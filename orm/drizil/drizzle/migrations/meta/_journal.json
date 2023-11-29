@@ -8,6 +8,13 @@
       "when": 1700929886189,
       "tag": "0000_chunky_khan",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1701278288420,
+      "tag": "0001_short_blob",
+      "breakpoints": true
     }
   ]
 }
