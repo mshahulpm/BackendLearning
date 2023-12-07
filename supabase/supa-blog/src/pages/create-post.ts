@@ -18,7 +18,7 @@ createForm.onsubmit = async function(e){
         await supabase.from('Post').insert({
             title,
             content,
-            user_id: session?.user.id
+            user_id: '1f1c306d-6818-4306-8a63-1a5dd33691b7' //session?.user.id
         })
     }
 
