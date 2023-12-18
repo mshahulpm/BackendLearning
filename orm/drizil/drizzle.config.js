@@ -9,6 +9,6 @@ export default {
         host: 'localhost',
         user: 'postgres',
         password: '123456',
-        database: 'drizzel',
+        database: 'dvd_rental',
     },
 } 

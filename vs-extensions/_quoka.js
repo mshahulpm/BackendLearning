@@ -5,6 +5,5 @@ console.log(user);
 let d = new Date().toDateString()
 
 
-
 console.log(d);
 

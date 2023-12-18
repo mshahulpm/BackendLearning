@@ -6,6 +6,18 @@ const prisma = new PrismaClient()
 
 async function main() {
 
+
+    console.log(
+        await prisma.reminder.findMany({
+            take: 2,
+            orderBy: {
+                time_limit: 'desc'
+            }
+        })
+    );
+
+    return
+
     await prisma.author.createMany({
         data: [
             {
