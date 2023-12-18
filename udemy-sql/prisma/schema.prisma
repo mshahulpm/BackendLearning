@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,33 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Sample {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model documents {
+  document_id  Int      @id @default(autoincrement())
+  header_text  String   @db.VarChar(255)
+  posting_date DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model cities {
+  name       String @db.VarChar(50)
+  country    String @db.VarChar(255)
+  population Int
+  area       Int
+
+  @@ignore
+}
+
+model Post {
+  id          Int    @id @default(autoincrement())
+  tag         String @db.Char(5)
+  title       String @db.VarChar(255)
+  description String @db.VarChar(255)
+  content     String
 }
