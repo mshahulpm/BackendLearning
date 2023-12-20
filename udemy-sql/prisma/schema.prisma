@@ -35,3 +35,14 @@ model Post {
   description String @db.VarChar(255)
   content     String
 }
+
+model bool {
+  id             Int      @id @default(autoincrement())
+  is_ok          Boolean?
+  inserted_value String?  @db.VarChar(50)
+}
+
+model non_null_bool {
+  id    Int     @id @default(autoincrement())
+  is_ok Boolean
+}

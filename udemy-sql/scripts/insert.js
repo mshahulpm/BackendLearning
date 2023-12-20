@@ -4,23 +4,29 @@ let a = ''
 
 let i = 0
 while (true) {
-    a += i
-    i++
-    if (i === 10000000) break;
+  a += i
+  i++
+  if (i === 10000000) break;
 }
 
 async function main() {
 
-    return
-    // testing a column with more than 10000000 characters
-    await prisma.$queryRaw`
+
+  await prisma.$queryRaw`
+  INSERT INTO documents (header_text)
+  values ('Header 1' )
+  `
+
+  return
+  // testing a column with more than 10000000 characters
+  await prisma.$queryRaw`
       INSERT INTO "Post" (tag,title,description,content)
   values ('tag 6','Title 1','Description 1',${a});
     `
 
-    return
-    // inserting data to a table 
-    await prisma.$queryRaw`
+  return
+  // inserting data to a table 
+  await prisma.$queryRaw`
   INSERT INTO "Post" (tag,title,description,content)
   values ('tag 1','Title 1','Description 1','Content 1'),
    ('tag 2','Title 2','Description 2','Content 2'),
