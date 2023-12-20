@@ -38,11 +38,20 @@ model Post {
 
 model bool {
   id             Int      @id @default(autoincrement())
-  is_ok          Boolean?
+  is_ok          Boolean? @default(false)
   inserted_value String?  @db.VarChar(50)
 }
 
 model non_null_bool {
   id    Int     @id @default(autoincrement())
   is_ok Boolean
+}
+
+model char {
+  id                    Int     @id @default(autoincrement())
+  char                  String? @db.Char(5)
+  varchar               String? @db.VarChar(10)
+  text                  String?
+  varchar_without_limit String? @db.VarChar
+  char_without_limit    String? @db.Char(1)
 }
