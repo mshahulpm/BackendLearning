@@ -55,3 +55,9 @@ model char {
   varchar_without_limit String? @db.VarChar
   char_without_limit    String? @db.Char(1)
 }
+
+model numeric {
+  id     Int      @id @default(autoincrement())
+  price  Decimal? @db.Decimal(5, 2)
+  price2 Decimal? @db.Decimal(5, 0)
+}
