@@ -61,3 +61,14 @@ model numeric {
   price  Decimal? @db.Decimal(5, 2)
   price2 Decimal? @db.Decimal(5, 0)
 }
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model int {
+  id                 Int    @id @default(autoincrement())
+  small_int          Int    @default(0) @db.SmallInt
+  int                Int    @default(0)
+  big_int            BigInt @default(0)
+  positive_small_int Int    @default(1) @db.SmallInt
+  non_negative_int   Int    @default(0)
+  negative_big_int   BigInt @default(-1)
+}

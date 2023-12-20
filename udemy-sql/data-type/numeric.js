@@ -48,6 +48,7 @@ async function main() {
     const dataWithNan = (await pgClient.query(`select * from numeric where price = 'NaN'`)).rows
 
     console.log({ dataWithNan });
+
     pgClient.end()
 }
 
