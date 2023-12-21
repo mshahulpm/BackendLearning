@@ -90,3 +90,7 @@ model timestamp {
   ts   DateTime? @db.Timestamp(6)
   tstz DateTime? @db.Timestamptz(6)
 }
+
+model table_name {
+  id Int @id @default(autoincrement())
+}
