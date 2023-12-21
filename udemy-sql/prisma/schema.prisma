@@ -100,3 +100,9 @@ model serial {
   small_serial Int    @default(autoincrement()) @db.SmallInt
   big_serial   BigInt @default(autoincrement())
 }
+
+model interval {
+  id       Int                      @id @default(autoincrement())
+  name     String?                  @db.VarChar(10)
+  interval Unsupported("interval")?
+}
