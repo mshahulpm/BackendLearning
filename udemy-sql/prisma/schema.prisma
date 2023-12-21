@@ -72,3 +72,15 @@ model int {
   non_negative_int   Int    @default(0)
   negative_big_int   BigInt @default(-1)
 }
+
+model date {
+  id   Int      @id @default(autoincrement())
+  date DateTime @default(dbgenerated("CURRENT_DATE")) @db.Date
+}
+
+model employee {
+  id         Int      @id @default(autoincrement())
+  name       String?  @db.VarChar(10)
+  birth_date DateTime @db.Date
+  hire_date  DateTime @db.Date
+}

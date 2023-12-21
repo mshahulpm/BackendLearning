@@ -13,6 +13,8 @@ const pgClient = new Client({
     password: '123456',
 })
 
+pgClient.connect()
+
 module.exports = {
     prisma,
     pgClient
