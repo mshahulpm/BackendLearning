@@ -84,3 +84,9 @@ model employee {
   birth_date DateTime @db.Date
   hire_date  DateTime @db.Date
 }
+
+model timestamp {
+  id   Int       @id @default(autoincrement())
+  ts   DateTime? @db.Timestamp(6)
+  tstz DateTime? @db.Timestamptz(6)
+}
