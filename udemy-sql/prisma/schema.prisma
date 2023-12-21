@@ -106,3 +106,16 @@ model interval {
   name     String?                  @db.VarChar(10)
   interval Unsupported("interval")?
 }
+
+model shifts {
+  id         Int      @id @default(autoincrement())
+  shift_name String   @db.VarChar
+  start_at   DateTime @db.Time(6)
+  end_at     DateTime @db.Time(6)
+}
+
+model time {
+  id    Int       @id @default(autoincrement())
+  time  DateTime? @default(dbgenerated("CURRENT_TIME")) @db.Time(6)
+  time2 DateTime? @db.Time(6)
+}
