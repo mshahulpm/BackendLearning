@@ -119,3 +119,8 @@ model time {
   time  DateTime? @default(dbgenerated("CURRENT_TIME")) @db.Time(6)
   time2 DateTime? @db.Time(6)
 }
+
+model uuid {
+  id   String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name String? @db.VarChar(10)
+}
