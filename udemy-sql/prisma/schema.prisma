@@ -94,3 +94,9 @@ model timestamp {
 model table_name {
   id Int @id @default(autoincrement())
 }
+
+model serial {
+  id           Int    @id @default(autoincrement())
+  small_serial Int    @default(autoincrement()) @db.SmallInt
+  big_serial   BigInt @default(autoincrement())
+}
