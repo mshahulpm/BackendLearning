@@ -135,3 +135,13 @@ model books {
   title String?                @db.VarChar(255)
   attr  Unsupported("hstore")?
 }
+
+model array {
+  id         Int      @id @default(dbgenerated("nextval('_array_id_seq'::regclass)"))
+  text_array String[]
+  char_array String[] @db.Char(1)
+  num_array  Int[]
+  json_array Json[]   @db.Json
+
+  @@map("_array")
+}
