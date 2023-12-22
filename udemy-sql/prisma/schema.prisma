@@ -124,3 +124,8 @@ model uuid {
   id   String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   name String? @db.VarChar(10)
 }
+
+model json {
+  id   Int  @id @default(autoincrement())
+  json Json @db.Json
+}
