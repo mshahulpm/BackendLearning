@@ -261,6 +261,18 @@ async function main() {
 
 -- select * from users full join comments on users.id = comments.user_id 
 
+------------------------------- JOIN with WHERE ----------------------------------
+-- select url,contents 
+-- from comments 
+-- join photos on photos.id = comments.photo_id 
+-- where photos.user_id = comments.user_id
+
+------------------------------------- 3 way join ----------------------------------
+-- get comment_content, photo_url and username where who commented on their own photo 
+select contents,url,username 
+from comments 
+join photos on photos.id = comments.photo_id
+join users on users.id = photos.user_id and users.id = comments.user_id
         `
     );
 
