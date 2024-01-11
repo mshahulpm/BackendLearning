@@ -14,13 +14,15 @@ async function main() {
         -- ('London','UK',18000000,6789),
         -- ('Abudabi','UAE',15000000,5660)
 
-        select * from ( select population / area as density from cities ) as t where density = 4614 
+        select * from ( select population / area as density from cities ) as t where density = 4766 
 
         `
     );
 
     console.log(
-        // (await pgClient.query(`select * from ( (population / area) as density from cities ) as t where density = 4614 `)).rows
+        (await pgClient.query(`
+       select * from (select *, (population / area) as density from cities ) as t where density = 4766 
+        `)).rows
     );
 
 }

@@ -169,3 +169,28 @@ model users {
   comments comments[]
   photos   photos[]
 }
+
+model orders2 {
+  id         Int        @id @default(autoincrement())
+  user_id    Int?
+  product_id Int?
+  paid       Boolean?
+  products2  products2? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users2     users2?    @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model products2 {
+  id         Int       @id @default(autoincrement())
+  name       String?   @db.VarChar
+  department String?   @db.VarChar
+  price      Int?
+  weight     Int?
+  orders2    orders2[]
+}
+
+model users2 {
+  id         Int       @id @default(autoincrement())
+  first_name String?   @db.VarChar
+  last_name  String?   @db.VarChar
+  orders2    orders2[]
+}

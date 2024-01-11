@@ -257,7 +257,7 @@ async function main() {
 
 -- select * from users right join comments on users.id = comments.user_id 
 
--- 4. full outer join (all data from both table if any thing have relation to another table that feilds will be set as null )
+-- 4. full outer join (all data from both table if any thing don't have relation to another table that feilds will be set as null )
 
 -- select * from users full join comments on users.id = comments.user_id 
 
