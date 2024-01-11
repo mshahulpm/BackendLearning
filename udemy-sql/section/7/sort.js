@@ -26,7 +26,7 @@ async function main() {
         -- select name,price from products2 order by price limit 5
 
         -- get 5 most expensive products 
-        select name,price from products2 order by price desc  limit 5 offset 1
+        select name,price from products2 order by price desc limit 5 offset 1
 
         `
         , { depth: null })

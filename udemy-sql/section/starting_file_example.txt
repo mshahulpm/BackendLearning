@@ -1,0 +1,19 @@
+const { prisma } = require("../../db");
+
+/**
+ * 
+ */
+
+async function main() {
+
+    console.dir(
+
+        await prisma.$queryRaw`
+        
+        `
+
+        , { depth: null });
+
+}
+
+main()
