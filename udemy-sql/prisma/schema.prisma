@@ -194,3 +194,17 @@ model users2 {
   last_name  String?   @db.VarChar
   orders2    orders2[]
 }
+
+model company {
+  id        Int         @id @default(autoincrement())
+  name      String?     @db.VarChar(50)
+  employees employees[]
+}
+
+model employees {
+  employee_id Int      @id @default(autoincrement())
+  name        String?  @db.VarChar(50)
+  company_id  Int?
+  is_owner    Boolean? @default(false)
+  company     company? @relation(fields: [company_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
