@@ -11,7 +11,7 @@ datasource db {
 }
 
 model KPI {
-  id          Int        @id @default(autoincrement())
+  id          Int        @id
   time_limit  Float
   time_type   String
   status_code String

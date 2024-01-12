@@ -6,7 +6,16 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-
+    console.log(
+        await prisma.kPI.createMany({
+            data: [
+                { id: 1, status_code: 'hey', time_limit: 30, time_type: 'week' },
+                { id: 2, status_code: 'hoy', time_limit: 20, time_type: 'week' },
+                { id: 3, status_code: 'hehe', time_limit: 45, time_type: 'week' },
+            ]
+        })
+    );
+    return
     console.log(
         await prisma.reminder.findMany({
             take: 2,
