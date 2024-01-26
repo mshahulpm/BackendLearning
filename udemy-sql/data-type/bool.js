@@ -27,7 +27,7 @@ async function main() {
 
         -- SELECT * from bool where is_ok is null -- null
 
-        -- alter column set default value to false   
+        ------- alter column set default value to false   
         -- alter table bool alter is_ok set default false 
         -- insert into bool (inserted_value) values ('nothing')
         -- select * from bool where inserted_value = 'nothing'

@@ -37,7 +37,7 @@ async function main() {
                 -- select photo_id , count(*)::int from comments where photo_id < 5 group by photo_id having count(*) > 20
 
                 -- select users who commented on first 50 photos and added more than 20 comments 
-                select user_id,count(*)::int from comments where photo_id < 50 group by user_id having count(*) > 20  
+                -- select user_id,count(*)::int from comments where photo_id < 50 group by user_id having count(*) > 20  
             `,
             // await pgClient.query('select * from comments group by user_id')
             //     await prisma.$queryRaw`

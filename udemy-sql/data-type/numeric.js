@@ -1,5 +1,5 @@
 /**
- * Numeric data type 
+ * Numeric data type  or called decimal(use this data type for money)
  * NUMERIC(precision,scale)
  */
 

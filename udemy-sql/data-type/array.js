@@ -27,24 +27,24 @@ async function main() {
         -- )
 
         -- insert some values 
-        -- insert into _array (text_array,char_array,num_array) values 
+        -- insert into _array (text_array,char_array,num_array,json_array) values 
         -- (
-        --     ARRAY ['hey','hoy','how are you'],
+        --     ${['hey', 'hoy', 'how are you']},
         --     ARRAY ['A','B','C','D'],
-        --     ARRAY [1,2,3,4,5]
-        --     -- ARRAY [${some_json_array}] 
+        --     ARRAY [1,2,3,4,5],
+        --      ${some_json_array.slice(0, 1)}
         -- )
 
         -- insert into _array (char_array) values 
-        -- (ARRAY ['AB'])   -- will throw error
+        -- (ARRAY ['AB'])   -- will throw error because element length is 2 
 
         -- insert into _array (num_array) values 
-        -- (ARRAY ['AB'])   -- will throw error
+        -- (ARRAY ['AB'])   -- will throw error because data type is int[] but passing text[]
 
         -- insert into _array (json_array) values 
         -- ( ${some_json_array})   
 
-        select * from _array  
+        select * from _array  order by id desc limit 1
         `,
         { depth: null }
 
