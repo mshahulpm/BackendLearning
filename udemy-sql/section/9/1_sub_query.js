@@ -45,20 +45,65 @@ async function main() {
 
 -- select * from (select max(price) from products2) as p 
 
-select avg(order_count)::float from 
-(
-    select user_id , count(*)::int as order_count from orders2 group by user_id
-)as p 
+-- ------------- sub query in from clause --------------------
+-- select avg(order_count)::float from 
+-- (
+--     select user_id , count(*)::int as order_count from orders2 group by user_id
+-- )as p 
 
+-- ------------- sub query in  where claus --------------------
+-- select id from orders2 where product_id in (
+--     select id from products2 where price / weight > 450  
+-- ) 
+
+-- --> get name of all products where price greater than average price 
+-- select name,price from products2 where price > (
+--     select avg(price)::float from products2
+-- )
+
+-- >  select name and department from products where department should not contain products with price < 100 
+-- select name,department,price from products2 where 
+-- department not in (
+--     select department from products2 where price < 100 
+-- )
+
+-- > select name and price of all product where it's price > than at least one of product in industrial department 
+
+-- select name,price from products2 where price > some (
+--     select price from products2 where department = 'Industrial'
+-- )
+
+-- > get most expensive products in every departments 
+
+-- select name,price,department from products2 as p1 
+-- where p1.price = (
+--     select max(price) from products2 as p2 where p1.department = p2.department
+-- )
+
+-- select products and no of orders by sub query 
+-- select name,price ,(
+--     select count(*)::int from orders2 as o 
+--     where o.product_id = p.id 
+-- ) as order_count from products2 as p 
+------------- select without from ---------------
+select 
+( select max(price)::float from products2),
+( select min(price)::float from products2 ),
+( select avg(price)::float from products2)
+ ;
         `
 
         , { depth: null });
 
     // console.log(
     //     (await pgClient.query(`
-    //         select name,price, (price / (select max(price) from products2)) as price_ratio 
-    // from products2
-    //         `)).rows
+    //     select 
+    //         (   select max(price)::float from products2),
+    //         ( select min(price)::float from products2 ),
+    //         ( select avg(price)::float from products2)
+    //          ;
+
+    //     `)).rows
     // );
 
 }
