@@ -5,6 +5,8 @@ import { UserModel } from './model/users.js'
 import { config } from 'dotenv'
 import ExcelJS from 'exceljs'
 import { PrismaStream } from './prismastream/index.js'
+import { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 config()
 const app = express()
@@ -12,7 +14,7 @@ const prisma = new PrismaClient()
 
 
 app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to bulk export test' })
+    res.sendFile(dirname(fileURLToPath(import.meta.url)) + '/index.html')
 })
 
 

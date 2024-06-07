@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Download Excel</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+
+    <h1>Welcome to bulk export</h1>
+    <h5 id="progress"></h5>
+    <button id="downloadBtn">Download Report</button>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', async (el) => {
+            try {
+                el.target.disabled = true
+                const response = await axios.get('/excel-js-stream', {
+                    responseType: 'blob', // Important to handle streaming data as binary
+                    onDownloadProgress: (progressEvent) => {
+                        const { loaded } = progressEvent;
+                        document.getElementById('progress').innerHTML = `
+                         Download Progress ${(loaded / (1024 * 1024)).toFixed(1)} MB
+                         `
+                    },
+                });
+
+                el.target.disabled = false
+
+                // Create a URL for the blob object
+                const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
+
+                // Create a link element
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'prisma-stream.xlsx'); // Set the file name
+
+                // Append to the document
+                document.body.appendChild(link);
+
+                // Simulate click
+                link.click();
+
+                // Cleanup
+                document.body.removeChild(link);
+                window.URL.revokeObjectURL(url);
+
+            } catch (error) {
+                console.error('Error downloading the file', error);
+            }
+        });
+    </script>
+</body>
+
+</html>
