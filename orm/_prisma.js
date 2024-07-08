@@ -6,6 +6,15 @@ const prisma = new PrismaClient()
 
 async function main() {
 
+    await prisma.$executeRaw`DBCC CHECKIDENT ('Company', RESEED, 0)`;
+    await prisma.company.deleteMany()
+    const company = await prisma.company.create({ data: {} })
+
+    console.log(
+        company
+    );
+
+    return
     console.log(
         await prisma.kPI.createMany({
             data: [

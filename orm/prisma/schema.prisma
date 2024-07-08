@@ -10,26 +10,13 @@ datasource db {
   url      = env("PRISMA_DB")
 }
 
-model KPI {
-  id          Int        @id
-  time_limit  Float
-  time_type   String
-  status_code String
-  Reminders   Reminder[]
+model user {
+  id            String @id @default(uuid())
+  name          String @default("")
+  CompanyCodeNo Int    @default(autoincrement())
 }
 
-model Reminder {
-  id             Int              @id @default(autoincrement())
-  reminder_no    Int
-  time_limit     Float
-  kpi_id         Int
-  KPI            KPI              @relation(fields: [kpi_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
-  ReminderMailto ReminderMailto[]
-}
-
-model ReminderMailto {
-  id          Int      @id @default(autoincrement())
-  mail_to     String
-  reminder_id Int
-  Reminder    Reminder @relation(fields: [reminder_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+model Company {
+  CompanyID     String @id(map: "PK__Company__2D971C4C35F5B1B4") @default(dbgenerated("newid()")) @db.UniqueIdentifier
+  CompanyCodeNo Int    @default(autoincrement())
 }
