@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "bad-words": "^3.0.4",
+    "spam-check": "^1.0.1"
+  }
+}
