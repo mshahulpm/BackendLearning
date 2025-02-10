@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
  **  ******** TIME REQUIRED TO EXPORT 2 MILLION RECORDS - 1:46 MINUTES ********
  * 
  */
-app.get('/excel-js-stream', async (req, res) => {
+app.get('/export/excel-js-stream', async (req, res) => {
     console.time('excel-js-stream');
 
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -81,7 +81,7 @@ app.get('/excel-js-stream', async (req, res) => {
  * 
  **  ******** TIME REQUIRED TO EXPORT 2 MILLION RECORDS - 2:00 MINUTES ********
  */
-app.get('/prisma-stream', async (req, res) => {
+app.get('/export/prisma-stream', async (req, res) => {
     console.time('prisma-stream');
 
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -217,6 +217,7 @@ app.get('/csv-write', async (req, res) => {
 
 })
 
+const PORT = 8051
 
-app.listen(3000, () => console.log('on 3000'))
+app.listen(PORT, () => console.log('on ' + PORT))
 

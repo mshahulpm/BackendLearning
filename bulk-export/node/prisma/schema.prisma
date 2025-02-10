@@ -12,6 +12,6 @@ model users {
   age       Int
   email     String
   firstName String
-  lastName  String
+  id_       Ing
   place     String
 }
