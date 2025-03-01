@@ -1,0 +1,24 @@
+# Ignore Python bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environment directories
+venv/
+ENV/
+env/
+.venv/
+
+# Ignore Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Ignore pipenv files
+Pipfile.lock
+
+# Ignore mypy files
+.mypy_cache/
+
+# Ignore pytest files
+.pytest_cache/
