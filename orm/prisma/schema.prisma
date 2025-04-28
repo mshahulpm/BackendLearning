@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlserver"
+  provider = "postgresql"
   url      = env("PRISMA_DB")
 }
 
@@ -16,7 +16,31 @@ model user {
   CompanyCodeNo Int    @default(autoincrement())
 }
 
-model Company {
-  CompanyID     String @id(map: "PK__Company__2D971C4C35F5B1B4") @default(dbgenerated("newid()")) @db.UniqueIdentifier
-  CompanyCodeNo Int    @default(autoincrement())
+model challenge {
+  challenge_id          String                  @id @default(uuid())
+  name                  String
+  checkpoints           challenge_checkpoint[]
+  checkpoint_submission checkpoint_submission[]
+}
+
+model challenge_checkpoint {
+  checkpoint_no Int
+  challenge_id  String
+
+  challenge   challenge               @relation(fields: [challenge_id], references: [challenge_id])
+  submissions checkpoint_submission[]
+
+  @@id([challenge_id, checkpoint_no])
+}
+
+model checkpoint_submission {
+  user_id       String
+  challenge_id  String
+  checkpoint_no Int
+  url           String
+
+  challenge_checkpoint challenge_checkpoint @relation(fields: [challenge_id, checkpoint_no], references: [challenge_id, checkpoint_no])
+  challenge            challenge            @relation(fields: [challenge_id], references: [challenge_id])
+
+  @@id([challenge_id, checkpoint_no, user_id])
 }

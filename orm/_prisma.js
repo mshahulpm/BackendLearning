@@ -6,90 +6,33 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-    await prisma.$executeRaw`DBCC CHECKIDENT ('Company', RESEED, 0)`;
-    await prisma.company.deleteMany()
-    const company = await prisma.company.create({ data: {} })
+    const user = await prisma.user.create({
+        data: {
+            name: "user " + Math.random().toString().slice(6),
+        }
+    })
 
-    console.log(
-        company
-    );
+    const challenge = await prisma.challenge.create({
+        data: {
+            name: "challenge " + Date.now(),
+        }
+    })
 
-    return
-    console.log(
-        await prisma.kPI.createMany({
-            data: [
-                { id: 1, status_code: 'hey', time_limit: 30, time_type: 'week' },
-                { id: 2, status_code: 'hoy', time_limit: 20, time_type: 'week' },
-                { id: 3, status_code: 'hehe', time_limit: 45, time_type: 'week' },
-            ]
-        })
-    );
-    return
-    console.log(
-        await prisma.reminder.findMany({
-            take: 2,
-            orderBy: {
-                time_limit: 'desc'
-            }
-        })
-    );
-
-    return
-
-    await prisma.author.createMany({
+    const checkpoints = await prisma.challenge_checkpoint.createMany({
         data: [
-            {
-                content: 'hello 1',
-                description: 'hehe',
-                title: 'title 1'
-            },
-            {
-                content: 'hello 2',
-                description: 'hehe',
-                title: 'title 3'
-            }
+            { checkpoint_no: 1, challenge_id: challenge.challenge_id },
+            { checkpoint_no: 2, challenge_id: challenge.challenge_id },
+            { checkpoint_no: 3, challenge_id: challenge.challenge_id },
         ]
     })
 
-    const authors = await prisma.author.findMany()
-
-    await prisma.user.createMany({
+    const submissions = await prisma.checkpoint_submission.createMany({
         data: [
-            {
-                email: 'hell@g.com',
-                name: 'Name 1'
-            },
-            {
-                email: 'hell@g.com',
-                name: 'Name 1'
-            }
+            { challenge_id: challenge.challenge_id, checkpoint_no: 1, url: '', user_id: user.id },
+            { challenge_id: challenge.challenge_id, checkpoint_no: 2, url: '', user_id: user.id },
+            { challenge_id: challenge.challenge_id, checkpoint_no: 3, url: '', user_id: user.id },
         ]
     })
-
-    const users = await prisma.user.findMany()
-
-    await prisma.post.createMany({
-        data: [
-            {
-                authorId: authors[0].id,
-                content: 'hello 1',
-                description: 'hehe',
-                title: 'hrhrhr',
-                userId: users[0].id,
-            },
-            {
-                authorId: authors[1].id,
-                content: 'hello 2',
-                description: 'hehe',
-                title: 'hrhrhr',
-                userId: users[1].id,
-            }
-        ]
-    })
-
-    // const posts = await prisma.post.findMany()
-
-    // console.log(authors, posts, users);
 
 }
 
