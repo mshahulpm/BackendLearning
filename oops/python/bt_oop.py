@@ -1,15 +1,17 @@
 import random
 
+
 class BaseClass:
-    
-    number:int = 10
-  
+
+    number: int = 10
+
     def __init__(self):
         print("BaseClass constructor called")
         self.number = random.randint(1, 100)
 
     def display(self):
         print("BaseClass display()")
+
 
 class SubClass(BaseClass):
 
@@ -19,6 +21,7 @@ class SubClass(BaseClass):
 
     def show(self):
         print("SubClass show()")
+
 
 # x = BaseClass()
 # x.display()

@@ -1,9 +1,10 @@
 class Sample:
-    def set_name(self,name):
+    def set_name(self, name):
         self.name = name
 
-    def __add__(self,other):
+    def __add__(self, other):
         return self.name + " " + other.name
+
 
 first_name = Sample()
 second_name = Sample()

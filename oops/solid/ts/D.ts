@@ -9,6 +9,13 @@ Explanation: This principle promotes loose coupling by ensuring that high-level 
 
 class NotificationService {
 
+    // need to create the configuration here
+    // sender = NodeMailer()
+
+    constructor() {
+
+    }
+
     // the problem with this way we can not change the way of sending notification very easily such changing email to sms or using both
     sendEmail(message: string, from: string, to: string) {
 
@@ -21,6 +28,7 @@ interface NotificationSender {
 }
 
 class NotificationService2 {
+
     constructor(private sender: NotificationSender) { }
 
     // example notification
@@ -58,3 +66,4 @@ class SmsSender implements NotificationSender {
 // usage 
 const notificationServiceSms = new NotificationService2(new SmsSender())
 const notificationServiceEmail = new NotificationService2(new EmailSender())
+

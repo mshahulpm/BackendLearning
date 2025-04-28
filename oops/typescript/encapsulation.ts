@@ -1,4 +1,7 @@
 // functional way
+/**
+ Bundling data (attributes) and methods (functions) that operate on the data into a single unit (a class). It also involves restricting direct access to some of an object's components, which is achieved using access modifiers like private, protected, and public.
+ */
 
 let salary = 10000;
 let bonus = 5000;
@@ -25,6 +28,8 @@ class Employee {
     }
 
 }
+
+function hell() { }
 
 let emp = new Employee(10000, 5000);
 console.log(emp.getSalary()); // 15000
@@ -66,3 +71,4 @@ const emp2 = new Employee2(10000, 5000);
 // emp2.salary = 20000; // error
 
 console.log(emp2.district); // Employee2 { salary: 10000, bonus: 5000 }
+

@@ -5,6 +5,7 @@ Definition: Objects of a superclass should be replaceable with objects of a subc
 Explanation: Subclasses should adhere to the behavior expected by the superclass. If a subclass violates this, it can lead to unexpected behavior.
 */
 
+
 class Bird {
 
     isBird() {
@@ -12,7 +13,7 @@ class Bird {
     }
 
     fly() {
-        return "bird can fly"
+        return "Bird can Fly"
     }
 
 }
@@ -26,14 +27,15 @@ class Duck extends Bird {
     swim() {
         return "this duck can swim"
     }
+
 }
 
 function checkBird(bird: Bird) {
     return bird.isBird()
 }
 
-const d = new Duck("Donald")
+const duck = new Duck("Donald")
 const bird = new Bird()
 
 checkBird(bird)
-checkBird(d)
+checkBird(duck)
