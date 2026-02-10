@@ -100,11 +100,27 @@ app.get('/format', function (req, res) {
 });
 
 
+// ------------------- checking how sendFiles working ------------------
+
+app.get("/files", (req, res) => {
+    const files = fs.readdirSync('files')
+    return res.json(files)
+    files.forEach(file => {
+        res.write(`<a href="/files/${file}">${file}</a><br/>`)
+    })
+    res.end()
+})
+
+app.get("/files/:filename", (req, res) => {
+    res.sendFile(__dirname + "/files/" + req.params.filename)
+})
+
 // 404 
 app.use(function (req, res, next) {
     console.log(req.url);
     res.status(404).json({ error: 'Sorry cant find that!' });
 })
+
 
 app.listen(3001, () => {
     console.log('Server is running on port 3001');

@@ -22,7 +22,6 @@ async function main() {
         end 
         from products2
         `
-
         , { depth: null });
 
 }
