@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="..">
+      <UniqueIdentifier>{13ED4249-1F9C-5F0F-2651-29A73F3A7059}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:">
+      <UniqueIdentifier>{F87FD356-0FEB-9BC5-D1FA-368C81420008}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users">
+      <UniqueIdentifier>{707347A1-1ABA-A9B2-9AF4-DE122F5D7F08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\mshah">
+      <UniqueIdentifier>{4788E5EA-1DA8-588C-BB06-A633E65B994B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\mshah\AppData">
+      <UniqueIdentifier>{DABCEBCE-33D1-4D68-EC67-0BC19A2A0901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\mshah\AppData\Roaming">
+      <UniqueIdentifier>{06897101-0A2C-F34A-36C2-4D0BE8BF5EB9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\mshah\AppData\Roaming\nvm">
+      <UniqueIdentifier>{C6BD613B-358D-2DCD-8B8A-73765EB3E8E4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\mshah\AppData\Roaming\nvm\v22.14.0">
+      <UniqueIdentifier>{F7C5E3A3-8E7C-C360-3466-E2117E475822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\mshah\AppData\Roaming\nvm\v22.14.0\node_modules">
+      <UniqueIdentifier>{126A39EA-1D28-5689-C126-0DA0AB5837A0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\mshah\AppData\Roaming\nvm\v22.14.0\node_modules\node-gyp">
+      <UniqueIdentifier>{49558BB4-6D34-CA91-A65D-85A65792DC11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="C:\Users\mshah\AppData\Roaming\nvm\v22.14.0\node_modules\node-gyp\src">
+      <UniqueIdentifier>{F1003AD6-4B6D-45DF-3F56-5CAC869BF55E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="..">
+      <UniqueIdentifier>{13ED4249-1F9C-5F0F-2651-29A73F3A7059}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\addon.cc">
+      <Filter>..</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\mshah\AppData\Roaming\nvm\v22.14.0\node_modules\node-gyp\src\win_delay_load_hook.cc">
+      <Filter>C:\Users\mshah\AppData\Roaming\nvm\v22.14.0\node_modules\node-gyp\src</Filter>
+    </ClCompile>
+    <None Include="..\binding.gyp">
+      <Filter>..</Filter>
+    </None>
+  </ItemGroup>
+</Project>
